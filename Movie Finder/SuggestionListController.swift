@@ -17,6 +17,7 @@ class SuggestionListController: NSObject {
 
     private weak var tableView:UITableView!
     private weak var delegate:SuggestionListDelegate!
+    private var names:[String]?
     
     convenience init(tableView:UITableView,delegate:SuggestionListDelegate) {
         self.init()
@@ -24,30 +25,29 @@ class SuggestionListController: NSObject {
         self.tableView = tableView
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.backgroundColor = UIColor.red
+        self.tableView.backgroundColor = UIColor.clear
         self.hideList()
     }
     
     func hideList()  {
         self.tableView.isHidden = true
     }
-    func showList()  {
+    func showList(names:[String]?)  {
+        self.names = names
         self.tableView.isHidden = false
+        self.tableView.reloadData()
     }
 }
 
 extension SuggestionListController:UITableViewDataSource,UITableViewDelegate{
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return self.names?.count ?? 0
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SuggestionCell", for: indexPath)
+        cell.textLabel?.text = self.names![indexPath.row]
+        return cell
     }
 
 }

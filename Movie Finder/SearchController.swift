@@ -18,7 +18,8 @@ class SearchController: NSObject {
     private lazy var searchSaver:SearchSaver = SearchSaver()
     private var searchController:UISearchController!
     private var listController:SuggestionListController!
-   
+    weak var delegate:SearchDelegate?
+    
     convenience init(suggestionsTableView:UITableView,resultTableView:UITableView) {
         self.init()
         self.searchController = self.makeSearchController()
@@ -30,7 +31,6 @@ class SearchController: NSObject {
     private func makeSearchController() -> UISearchController{
         
         let iSearchController = UISearchController(searchResultsController: nil)
-        iSearchController.searchResultsUpdater = self;
         iSearchController.dimsBackgroundDuringPresentation = false;
         iSearchController.searchBar.placeholder = NSLocalizedString("SerachMovies", comment: "")
         iSearchController.searchBar.delegate = self;
@@ -40,30 +40,46 @@ class SearchController: NSObject {
     func saveSearch(movieName:String){
         self.searchSaver.saveSearch(movieName: movieName)
     }
+    
+    func resetSearchBar(){
+        self.searchController.searchBar.text = ""
+        self.searchController.searchBar.resignFirstResponder()
+        self.listController.hideList()
+    }
+    
+    private func showList(){
+        var names:[String]?
+        if let searches:[String] = self.searchSaver.searches() {
+            names = searches
+        }
+      self.listController.showList(names:names )
+    }
 }
 
-extension SearchController:UISearchResultsUpdating{
-        func updateSearchResults(for searchController: UISearchController) {
-            let searchString = searchController.searchBar.text
-            
+extension SearchController:UISearchBarDelegate{
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        if let searchString = searchBar.text {
+            if searchString.count > 0 {
+                self.delegate?.search(movieName: searchString)
+            }
         }
     }
     
-extension SearchController:UISearchBarDelegate{
-    
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        self.listController.showList()
+        self.showList()
         return true
     }
         
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.listController.hideList()
+        self.resetSearchBar()
     }
 }
 
 extension SearchController:SuggestionListDelegate{
     func searchSelected(movieName: String) {
-        
+        self.delegate?.search(movieName: movieName)
     }
 }
 

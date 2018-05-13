@@ -44,7 +44,7 @@ class Movie_FinderTests: XCTestCase {
         XCTAssert(key != nil)
     }
     
-    func testBatman() {
+    func testBatmanSearch() {
         
         let expectation: XCTestExpectation = XCTestExpectation(description: "BatmanTestCase")
         self.fetcher.searchMovie(name: "Batman", pageNum: 1) { (result:PageResult?, status:Bool) in
@@ -56,4 +56,7 @@ class Movie_FinderTests: XCTestCase {
         
         wait(for: [expectation], timeout: 10)
     }
+    
+   
+    
 }

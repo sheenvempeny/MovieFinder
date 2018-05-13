@@ -27,6 +27,11 @@
 		306449A620A7AA15008245C7 /* Localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = 306449A520A7AA15008245C7 /* Localized.strings */; };
 		306449A820A7B12C008245C7 /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306449A720A7B12C008245C7 /* MovieListViewController.swift */; };
 		306449AA20A7C05A008245C7 /* SearchSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306449A920A7C05A008245C7 /* SearchSaver.swift */; };
+		306449AC20A7F012008245C7 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306449AB20A7F012008245C7 /* CoreData.framework */; };
+		306449AF20A7F06D008245C7 /* MovieSearch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 306449AD20A7F06D008245C7 /* MovieSearch.xcdatamodeld */; };
+		306449D320A7FA71008245C7 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306449D220A7FA71008245C7 /* CoreDataManager.swift */; };
+		306449D720A821E7008245C7 /* MovieSearch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 306449AD20A7F06D008245C7 /* MovieSearch.xcdatamodeld */; };
+		306449DF20A82A62008245C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300681CD20A1E4AF005E6F75 /* AppDelegate.swift */; };
 		F56539BB448827F02A99F9CB /* Pods_Movie_FinderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEAD67559CA7D1FA377E2CAB /* Pods_Movie_FinderTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +65,9 @@
 		306449A520A7AA15008245C7 /* Localized.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localized.strings; sourceTree = "<group>"; };
 		306449A720A7B12C008245C7 /* MovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
 		306449A920A7C05A008245C7 /* SearchSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSaver.swift; sourceTree = "<group>"; };
+		306449AB20A7F012008245C7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		306449AE20A7F06D008245C7 /* MovieSearch.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MovieSearch.xcdatamodel; sourceTree = "<group>"; };
+		306449D220A7FA71008245C7 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		6C9A38AB40E6B830319B3904 /* Pods-Movie FinderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movie FinderTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Movie FinderTests/Pods-Movie FinderTests.release.xcconfig"; sourceTree = "<group>"; };
 		7226BFA3C9B86FBA8C2CB2C4 /* Pods_Movie_Finder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Movie_Finder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EBE81085853B16D670689D0 /* Pods-Movie Finder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movie Finder.release.xcconfig"; path = "Pods/Target Support Files/Pods-Movie Finder/Pods-Movie Finder.release.xcconfig"; sourceTree = "<group>"; };
@@ -73,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				306449AC20A7F012008245C7 /* CoreData.framework in Frameworks */,
 				171E0B78B21AB076B612DB62 /* Pods_Movie_Finder.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -102,6 +111,7 @@
 		300681C120A1E4AF005E6F75 = {
 			isa = PBXGroup;
 			children = (
+				306449AD20A7F06D008245C7 /* MovieSearch.xcdatamodeld */,
 				306449A520A7AA15008245C7 /* Localized.strings */,
 				300681CC20A1E4AF005E6F75 /* Movie Finder */,
 				300681E120A1E4BC005E6F75 /* Movie FinderTests */,
@@ -124,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				300681CD20A1E4AF005E6F75 /* AppDelegate.swift */,
+				306449D220A7FA71008245C7 /* CoreDataManager.swift */,
 				3006822A20A409EC005E6F75 /* MovieCell.swift */,
 				3006822E20A42DC1005E6F75 /* SearchController.swift */,
 				306449A720A7B12C008245C7 /* MovieListViewController.swift */,
@@ -153,6 +164,7 @@
 		7D86AA8DB31BAB86682C3D8F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				306449AB20A7F012008245C7 /* CoreData.framework */,
 				7226BFA3C9B86FBA8C2CB2C4 /* Pods_Movie_Finder.framework */,
 				BEAD67559CA7D1FA377E2CAB /* Pods_Movie_FinderTests.framework */,
 			);
@@ -350,7 +362,9 @@
 				3006822B20A409EC005E6F75 /* MovieCell.swift in Sources */,
 				3006822F20A42DC1005E6F75 /* SearchController.swift in Sources */,
 				3006820320A2C4BC005E6F75 /* MovieListFetcher.swift in Sources */,
+				306449AF20A7F06D008245C7 /* MovieSearch.xcdatamodeld in Sources */,
 				300681CE20A1E4AF005E6F75 /* AppDelegate.swift in Sources */,
+				306449D320A7FA71008245C7 /* CoreDataManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,9 +372,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				306449DF20A82A62008245C7 /* AppDelegate.swift in Sources */,
 				3006820420A2C4BC005E6F75 /* MovieListFetcher.swift in Sources */,
 				3006820720A32ECA005E6F75 /* MovieInfo.swift in Sources */,
 				3006820820A33421005E6F75 /* Settings.swift in Sources */,
+				306449D720A821E7008245C7 /* MovieSearch.xcdatamodeld in Sources */,
 				300681E320A1E4BC005E6F75 /* Movie_FinderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -620,6 +636,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		306449AD20A7F06D008245C7 /* MovieSearch.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				306449AE20A7F06D008245C7 /* MovieSearch.xcdatamodel */,
+			);
+			currentVersion = 306449AE20A7F06D008245C7 /* MovieSearch.xcdatamodel */;
+			path = MovieSearch.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 300681C220A1E4AF005E6F75 /* Project object */;
 }
