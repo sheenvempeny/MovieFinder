@@ -11,6 +11,8 @@ import XCTest
 
 class Movie_FinderTests: XCTestCase {
     
+    let fetcher:MovieListFetcher = MovieListFetcher()
+    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -33,4 +35,25 @@ class Movie_FinderTests: XCTestCase {
         }
     }
     
+    func testSearchSettings(){
+        
+        let urlString = Settings.shared.searchUrl()
+        let key = Settings.shared.searchKey()
+        
+        XCTAssert(urlString != nil)
+        XCTAssert(key != nil)
+    }
+    
+    func testBatman() {
+        
+        let expectation: XCTestExpectation = XCTestExpectation(description: "BatmanTestCase")
+        self.fetcher.searchMovie(name: "Batman", pageNum: 1) { (result:PageResult?, status:Bool) in
+            
+            XCTAssert(result != nil)
+            expectation.fulfill()
+            
+        }
+        
+        wait(for: [expectation], timeout: 10)
+    }
 }
