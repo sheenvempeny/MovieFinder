@@ -14,7 +14,13 @@ class MovieInfo:Codable {
     let overview: String
     let release_date: String
     let poster_path: String
-
+ 
+    var posterUrl:URL{
+        get{
+            return URL(string: Settings.shared.posterUrl()! + self.poster_path)!
+        }
+    }
+    
     // Coding Keys
     enum CodingKeys: String, CodingKey {
         case title = "title"
@@ -36,7 +42,6 @@ class MovieInfo:Codable {
         self.overview = overview
         self.release_date = release_date
         self.poster_path = poster_path
-
     }
     
 }

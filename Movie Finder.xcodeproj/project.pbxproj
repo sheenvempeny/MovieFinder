@@ -24,7 +24,7 @@
 		3006822B20A409EC005E6F75 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3006822A20A409EC005E6F75 /* MovieCell.swift */; };
 		3006822F20A42DC1005E6F75 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3006822E20A42DC1005E6F75 /* SearchController.swift */; };
 		3006823120A4338A005E6F75 /* SuggestionListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3006823020A4338A005E6F75 /* SuggestionListController.swift */; };
-		306449A620A7AA15008245C7 /* Localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = 306449A520A7AA15008245C7 /* Localized.strings */; };
+		306449A620A7AA15008245C7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 306449A520A7AA15008245C7 /* Localizable.strings */; };
 		306449A820A7B12C008245C7 /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306449A720A7B12C008245C7 /* MovieListViewController.swift */; };
 		306449AA20A7C05A008245C7 /* SearchSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306449A920A7C05A008245C7 /* SearchSaver.swift */; };
 		306449AC20A7F012008245C7 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306449AB20A7F012008245C7 /* CoreData.framework */; };
@@ -62,7 +62,7 @@
 		3006822A20A409EC005E6F75 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		3006822E20A42DC1005E6F75 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		3006823020A4338A005E6F75 /* SuggestionListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionListController.swift; sourceTree = "<group>"; };
-		306449A520A7AA15008245C7 /* Localized.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localized.strings; sourceTree = "<group>"; };
+		306449A520A7AA15008245C7 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		306449A720A7B12C008245C7 /* MovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
 		306449A920A7C05A008245C7 /* SearchSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSaver.swift; sourceTree = "<group>"; };
 		306449AB20A7F012008245C7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -112,7 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				306449AD20A7F06D008245C7 /* MovieSearch.xcdatamodeld */,
-				306449A520A7AA15008245C7 /* Localized.strings */,
+				306449A520A7AA15008245C7 /* Localizable.strings */,
 				300681CC20A1E4AF005E6F75 /* Movie Finder */,
 				300681E120A1E4BC005E6F75 /* Movie FinderTests */,
 				300681CB20A1E4AF005E6F75 /* Products */,
@@ -258,7 +258,7 @@
 			files = (
 				300681D820A1E4BC005E6F75 /* LaunchScreen.storyboard in Resources */,
 				300681D520A1E4BC005E6F75 /* Assets.xcassets in Resources */,
-				306449A620A7AA15008245C7 /* Localized.strings in Resources */,
+				306449A620A7AA15008245C7 /* Localizable.strings in Resources */,
 				3006820020A2B3D9005E6F75 /* SearchConf.plist in Resources */,
 				300681D320A1E4AF005E6F75 /* Main.storyboard in Resources */,
 			);
@@ -337,10 +337,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Movie Finder/Pods-Movie Finder-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

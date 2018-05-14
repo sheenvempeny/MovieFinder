@@ -12,6 +12,7 @@ class Settings{
    
     private let searchApiKey:String = "key"
     private let searchUrlKey:String = "url"
+    private let posterUrlKey:String = "posterUrl"
     private let confFile:String = "SearchConf"
     static let shared = Settings()
     
@@ -24,7 +25,9 @@ class Settings{
         }
         return nil
     }
-    
+    func posterUrl() -> String? {
+        return self.searchDict()?.object(forKey: posterUrlKey) as? String
+    }
     func searchUrl() -> String? {
         return self.searchDict()?.object(forKey: searchUrlKey) as? String
     }

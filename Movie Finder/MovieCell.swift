@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
 class MovieCell:UITableViewCell{
     /* list   view   with   the   following   rows
@@ -25,8 +26,8 @@ class MovieCellUpdator: NSObject {
     
     func update(cell:MovieCell,info:MovieInfo){
         cell.lblMovieName.text = info.title
-        cell.lblReleaseDate.text = info.release_date
+        cell.lblReleaseDate.text = NSLocalizedString("MovieReleasedDate", comment: "")   + info.release_date
         cell.lblOverview.text = info.overview
-        cell.imgMoviePoster.image = UIImage()
+        cell.imgMoviePoster.kf.setImage(with: info.posterUrl)
     }
 }

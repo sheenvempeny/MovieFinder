@@ -14,10 +14,14 @@ class MovieListViewController: UIViewController {
     @IBOutlet weak var suggestionList:UITableView!
     private var searchController:SearchController!
     private var fetcher:MovieListFetcher!
+    private var movies:[MovieInfo]!
+    private var cellUpdator:MovieCellUpdator!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.cellUpdator = MovieCellUpdator()
+        self.movies = []
         self.fetcher = MovieListFetcher()
         self.searchController = SearchController(suggestionsTableView:suggestionList , resultTableView: resultList)
         self.searchController.delegate = self
@@ -44,31 +48,45 @@ class MovieListViewController: UIViewController {
 }
 
 extension MovieListViewController:SearchDelegate{
-    func search(movieName: String) {
-        self.fetcher.searchMovie(name: movieName, pageNum: 1) { (result:PageResult?, status:Bool) in
+    
+    func searchMovie(movieName: String,pageNum:Int){
+        
+        self.fetcher.searchMovie(name: movieName, pageNum: pageNum) { (result:PageResult?, status:Bool) in
             if (status == true){
-                print(movieName)
-                print(result?.total_results ?? 0)
-                self.searchController.saveSearch(movieName:movieName)
+                self.movies.append(contentsOf: result!.results)
+                if (result!.page == 1) {
+                    self.searchController.saveSearch(movieName:movieName)
+                }
+                DispatchQueue.main.async {
+                    self.searchController.resetSearchBar()
+                    self.resultList.reloadData()
+                    
+                }
+                
             }
             else{
                 print("error")
             }
         }
+
+    }
+    
+    func search(movieName: String) {
+        self.movies = []
+        self.searchMovie(movieName: movieName, pageNum: 1)
     }
 }
 
 extension MovieListViewController:UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return self.movies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        
+        let cell:MovieCell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
+        let info:MovieInfo = self.movies[indexPath.row]
+        self.cellUpdator.update(cell: cell, info: info)
+        return cell
     }
-    
-    
-    
-    
 }
-

@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>posterUrl</key>
+	<string>http://image.tmdb.org/t/p/w92</string>
 	<key>key</key>
 	<string>2696829a81b1b5827d515ff121700838</string>
 	<key>url</key>
