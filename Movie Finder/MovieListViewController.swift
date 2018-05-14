@@ -16,6 +16,10 @@ class MovieListViewController: UIViewController {
     private var fetcher:MovieListFetcher!
     private var movies:[MovieInfo]!
     private var cellUpdator:MovieCellUpdator!
+   
+    private var currentPage:Int?
+    private var totalPages:Int?
+    private var movieName:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,17 +57,26 @@ extension MovieListViewController:SearchDelegate{
         
         self.fetcher.searchMovie(name: movieName, pageNum: pageNum) { (result:PageResult?, status:Bool) in
             //There is an error or no movies found for the search
-            if (status == false || (status == true && result!.total_results == 0)){
+            if (pageNum == 1 && (status == false || (status == true && result!.total_results == 0))){
                 self.searchController.resetSearchBar()
                 self.showAlert(message: NSLocalizedString("NoMoviesError", comment: ""))
+                self.currentPage = nil
+                self.totalPages = nil
+                self.movieName = nil
+                self.resultList.reloadData()
                 return
             }
+            
             //Search is successful,saving the name
             if (pageNum == 1 && result!.total_results > 0) {
                 self.searchController.saveSearch(movieName:movieName)
+                self.movieName = movieName
             }
             
             //Reloading the table view
+            self.currentPage = pageNum
+            self.totalPages = result!.total_pages
+            
             self.searchController.resetSearchBar()
             self.movies.append(contentsOf: result!.results)
             self.resultList.reloadData()
@@ -88,6 +101,15 @@ extension MovieListViewController:UITableViewDataSource,UITableViewDelegate{
         let info:MovieInfo = self.movies[indexPath.row]
         self.cellUpdator.update(cell: cell, info: info)
         return cell
+    }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row + 1 == self.movies.count {
+            if (self.currentPage! < self.totalPages!){
+                
+                self.searchMovie(movieName: self.movieName!, pageNum: self.currentPage! + 1)
+            }
+            
+        }
     }
 }
 

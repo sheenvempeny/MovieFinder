@@ -31,20 +31,20 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pqW-7O-zQk">
-                                                    <rect key="frame" x="15" y="24" width="160" height="105"/>
+                                                    <rect key="frame" x="15" y="28" width="160" height="105"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="7Te-ek-25d"/>
                                                         <constraint firstAttribute="height" constant="105" id="Yeh-U9-sLm"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="suJ-YN-xnY">
-                                                    <rect key="frame" x="16" y="0.0" width="100.5" height="20.5"/>
+                                                    <rect key="frame" x="16" y="4" width="100.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Release Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="snK-Gg-2de">
-                                                    <rect key="frame" x="16" y="133.5" width="82.5" height="17"/>
+                                                    <rect key="frame" x="16" y="137.5" width="82.5" height="17"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -72,7 +72,7 @@
                                                 <constraint firstItem="snK-Gg-2de" firstAttribute="top" secondItem="pqW-7O-zQk" secondAttribute="bottom" constant="4.5" id="dCX-2F-OPa"/>
                                                 <constraint firstAttribute="trailing" secondItem="IoQ-f3-RvX" secondAttribute="trailing" constant="8" id="gMY-KP-dTP"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="suJ-YN-xnY" secondAttribute="trailing" constant="20" symbolic="YES" id="hcE-29-qwy"/>
-                                                <constraint firstItem="suJ-YN-xnY" firstAttribute="top" secondItem="sUF-Ye-DB3" secondAttribute="top" id="zGE-ga-XD2"/>
+                                                <constraint firstItem="suJ-YN-xnY" firstAttribute="top" secondItem="sUF-Ye-DB3" secondAttribute="top" constant="4" id="zGE-ga-XD2"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
