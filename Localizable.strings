@@ -7,3 +7,5 @@
 */
 
 "SerachMovies" = "Serach Movies here";
+"MovieName" = "Name :";
+"MovieReleasedDate" = "Released :";
