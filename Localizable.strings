@@ -9,3 +9,4 @@
 "SerachMovies" = "Serach Movies here";
 "MovieName" = "Name :";
 "MovieReleasedDate" = "Released :";
+"NoMoviesError" = "No movies found. Please do a different search";

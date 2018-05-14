@@ -9,7 +9,7 @@
 import UIKit
 
 class MovieListViewController: UIViewController {
-
+    
     @IBOutlet weak var resultList:UITableView!
     @IBOutlet weak var suggestionList:UITableView!
     private var searchController:SearchController!
@@ -28,23 +28,23 @@ class MovieListViewController: UIViewController {
         self.resultList.delegate = self
         self.resultList.dataSource = self
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 extension MovieListViewController:SearchDelegate{
@@ -52,24 +52,24 @@ extension MovieListViewController:SearchDelegate{
     func searchMovie(movieName: String,pageNum:Int){
         
         self.fetcher.searchMovie(name: movieName, pageNum: pageNum) { (result:PageResult?, status:Bool) in
-            if (status == true){
-                self.movies.append(contentsOf: result!.results)
-                if (result!.page == 1) {
-                    self.searchController.saveSearch(movieName:movieName)
-                }
-                DispatchQueue.main.async {
-                    self.searchController.resetSearchBar()
-                    self.resultList.reloadData()
-                    
-                }
-                
+            //There is an error or no movies found for the search
+            if (status == false || (status == true && result!.total_results == 0)){
+                self.searchController.resetSearchBar()
+                self.showAlert(message: NSLocalizedString("NoMoviesError", comment: ""))
+                return
             }
-            else{
-                print("error")
+            //Search is successful,saving the name
+            if (pageNum == 1 && result!.total_results > 0) {
+                self.searchController.saveSearch(movieName:movieName)
             }
+            
+            //Reloading the table view
+            self.searchController.resetSearchBar()
+            self.movies.append(contentsOf: result!.results)
+            self.resultList.reloadData()
         }
-
     }
+    
     
     func search(movieName: String) {
         self.movies = []
@@ -90,3 +90,20 @@ extension MovieListViewController:UITableViewDataSource,UITableViewDelegate{
         return cell
     }
 }
+
+extension UIViewController{
+    
+    func showAlert(message:String){
+        
+        let alertController = UIAlertController(title: "Movie Finder", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
+        {
+            (result : UIAlertAction) -> Void in
+            
+        }
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+}
+

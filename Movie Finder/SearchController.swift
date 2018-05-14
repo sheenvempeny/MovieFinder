@@ -42,6 +42,7 @@ class SearchController: NSObject {
     }
     
     func resetSearchBar(){
+        self.searchController.isActive = false
         self.searchController.searchBar.text = ""
         self.searchController.searchBar.resignFirstResponder()
         self.listController.hideList()
