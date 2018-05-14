@@ -100,6 +100,7 @@ extension CoreDataManager {
         let fetchRequest = NSFetchRequest<NSDictionary>(entityName:"Search")
         fetchRequest.propertiesToFetch = ["name"]
         fetchRequest.returnsDistinctResults = true;
+        //We need last searches
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "time", ascending: false)]
         fetchRequest.resultType = NSFetchRequestResultType.dictionaryResultType
         
@@ -109,6 +110,10 @@ extension CoreDataManager {
             for r in results {
                 let p = (r as AnyObject).value(forKey: "name") as! String
                 searches.append(p)
+                //We need only 10 items
+                if searches.count >= 10 {
+                    break
+                }
             }
             
             return searches

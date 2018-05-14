@@ -25,7 +25,6 @@ class SuggestionListController: NSObject {
         self.tableView = tableView
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.backgroundColor = UIColor.clear
         self.hideList()
     }
     
@@ -49,5 +48,8 @@ extension SuggestionListController:UITableViewDataSource,UITableViewDelegate{
         cell.textLabel?.text = self.names![indexPath.row]
         return cell
     }
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedName = self.names![indexPath.row]
+        self.delegate.searchSelected(movieName: selectedName)
+    }
 }

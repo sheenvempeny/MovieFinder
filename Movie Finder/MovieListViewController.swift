@@ -10,13 +10,14 @@ import UIKit
 
 class MovieListViewController: UIViewController {
     
+    @IBOutlet weak var suggestionTableHeight: NSLayoutConstraint!
     @IBOutlet weak var resultList:UITableView!
     @IBOutlet weak var suggestionList:UITableView!
     private var searchController:SearchController!
     private var fetcher:MovieListFetcher!
     private var movies:[MovieInfo]!
     private var cellUpdator:MovieCellUpdator!
-   
+    
     private var currentPage:Int?
     private var totalPages:Int?
     private var movieName:String?
@@ -26,17 +27,27 @@ class MovieListViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.cellUpdator = MovieCellUpdator()
         self.movies = []
+        // Fetcher for finding the movies
         self.fetcher = MovieListFetcher()
+        // Dealing with search Name
         self.searchController = SearchController(suggestionsTableView:suggestionList , resultTableView: resultList)
         self.searchController.delegate = self
         self.resultList.delegate = self
         self.resultList.dataSource = self
+        // For dynammically adjusts the content size
+        self.suggestionList.addObserver(self, forKeyPath: "contentSize", options: NSKeyValueObservingOptions.new, context: nil)
+        
+    }
+    // Kvo
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        suggestionTableHeight.constant = suggestionList.contentSize.height
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
     
     /*
@@ -60,9 +71,6 @@ extension MovieListViewController:SearchDelegate{
             if (pageNum == 1 && (status == false || (status == true && result!.total_results == 0))){
                 self.searchController.resetSearchBar()
                 self.showAlert(message: NSLocalizedString("NoMoviesError", comment: ""))
-                self.currentPage = nil
-                self.totalPages = nil
-                self.movieName = nil
                 self.resultList.reloadData()
                 return
             }
@@ -71,6 +79,10 @@ extension MovieListViewController:SearchDelegate{
             if (pageNum == 1 && result!.total_results > 0) {
                 self.searchController.saveSearch(movieName:movieName)
                 self.movieName = movieName
+            }
+            
+            guard result != nil else{
+                return
             }
             
             //Reloading the table view
@@ -86,6 +98,10 @@ extension MovieListViewController:SearchDelegate{
     
     func search(movieName: String) {
         self.movies = []
+        self.resultList.reloadData()
+        self.currentPage = nil
+        self.totalPages = nil
+        self.movieName = nil
         self.searchMovie(movieName: movieName, pageNum: 1)
     }
 }
@@ -113,19 +129,4 @@ extension MovieListViewController:UITableViewDataSource,UITableViewDelegate{
     }
 }
 
-extension UIViewController{
-    
-    func showAlert(message:String){
-        
-        let alertController = UIAlertController(title: "Movie Finder", message: message, preferredStyle: UIAlertControllerStyle.alert)
-        
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
-        {
-            (result : UIAlertAction) -> Void in
-            
-        }
-        alertController.addAction(okAction)
-        self.present(alertController, animated: true, completion: nil)
-    }
-}
 

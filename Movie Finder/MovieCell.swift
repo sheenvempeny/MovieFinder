@@ -28,6 +28,25 @@ class MovieCellUpdator: NSObject {
         cell.lblMovieName.text = info.title
         cell.lblReleaseDate.text = NSLocalizedString("MovieReleasedDate", comment: "")   + info.release_date
         cell.lblOverview.text = info.overview
-        cell.imgMoviePoster.kf.setImage(with: info.posterUrl)
+        if info.posterUrl != nil {
+            cell.imgMoviePoster.kf.setImage(with: info.posterUrl)
+        }
     }
 }
+
+extension UIViewController{
+    
+    func showAlert(message:String){
+        
+        let alertController = UIAlertController(title: "Movie Finder", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
+        {
+            (result : UIAlertAction) -> Void in
+            
+        }
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+}
+
