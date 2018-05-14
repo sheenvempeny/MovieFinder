@@ -1,0 +1,29 @@
+Documentation
+---------------
+
+External Libraries Used
+------------------------
+
+1) Alamofire 
+2) Kingfisher
+
+
+Classes
+-----------------
+
+1) MovieInfo -> Model for Movie
+2) MovieListFetcher -> Fetching the movies from cloud. Here we can change to xml-based api instead   of   json
+3) MovieCell -> UI for displaying MovieInfo
+4) SearchController -> Dealing with UISearchController and suggestion list view
+5) SearchSaver -> here we are saving the successful search (If   you   are   asked   to   use   a   different  persistent store   (Core   Data,   SQLite,   iCloud,   FMDB))
+6) Settings.swift -> provides the APIs and Keys
+7) CoreDataManager -> Saves and fetches the search info
+8) SuggestionListController -> Manages the suggestion table view
+9) MovieListViewController -> Main view controller display the result and do the necessary communication
+
+
+Files
+----------
+1) SearchConf.plist -> We can change the API and keys here
+2) MovieSearch.xcdatamodeld -> Data Model
+3) Localizable.strings -> Strings are here

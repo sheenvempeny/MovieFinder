@@ -6,7 +6,7 @@
   Copyright © 2018 sheen vempeny. All rights reserved.
 */
 
-"SerachMovies" = "Serach Movies here";
+"SerachMovies" = "Please serach movies here";
 "MovieName" = "Name :";
 "MovieReleasedDate" = "Released :";
 "NoMoviesError" = "No movies found. Please do a different search";
