@@ -4,8 +4,8 @@ Documentation
 External Libraries Used
 ------------------------
 
-1) Alamofire 
-2) Kingfisher
+1) Alamofire -> HTTP networking
+2) Kingfisher -> Image Caching
 
 
 Classes

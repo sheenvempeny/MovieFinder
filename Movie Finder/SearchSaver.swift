@@ -15,12 +15,9 @@ class SearchSaver{
     
     private func getDataManager() -> CoreDataManager{
         
-        if let appDelegate:AppDelegate = UIApplication.shared.delegate as? AppDelegate {
-            let dataManager:CoreDataManager = appDelegate.dataManager
-            return dataManager
-        }
-        
-        return CoreDataManager()
+        let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        let dataManager:CoreDataManager = appDelegate.dataManager
+        return dataManager
     }
     
     func saveSearch(movieName:String){
